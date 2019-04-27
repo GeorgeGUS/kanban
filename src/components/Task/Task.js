@@ -1,8 +1,12 @@
 import React from 'react';
 import './Task.css';
 
-const Task = ({ text }) => {
-  return <p>{text}</p>;
+const Task = ({ id, text }) => {
+  return (
+    <p>
+      {id} - {text}
+    </p>
+  );
 };
 
 export default Task;
