@@ -4,51 +4,37 @@ import * as actions from '../actions';
 
 const boardId = handleActions(
   {
-    [actions.addBoard](state) {
-      return state + 1;
-    }
+    [actions.addBoard]: state => state + 1
   },
   1
 );
 
 const taskId = handleActions(
   {
-    [actions.addTask](state) {
-      return state + 1;
-    }
+    [actions.addTask]: state => state + 1
   },
   1
 );
 
 const text = handleActions(
   {
-    [actions.updateText](state, { payload: text }) {
-      return text;
-    },
-    [actions.addBoard]() {
-      return '';
-    },
-    [actions.addTask]() {
-      return '';
-    }
+    [actions.updateText]: (state, { payload: text }) => text,
+    [actions.addBoard]: () => '',
+    [actions.addTask]: () => ''
   },
   ''
 );
 
 const boards = handleActions(
   {
-    [actions.addBoard](state, { payload: board }) {
-      return [...state, board];
-    }
+    [actions.addBoard]: (state, { payload: board }) => [...state, board]
   },
   []
 );
 
 const tasks = handleActions(
   {
-    [actions.addTask](state, { payload: task }) {
-      return [...state, task];
-    }
+    [actions.addTask]: (state, { payload: task }) => [...state, task]
   },
   []
 );
