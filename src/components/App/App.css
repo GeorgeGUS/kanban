@@ -1,7 +1,13 @@
-/*
- * App css File
-*/
-
-.App {
-    /* propertys here */
+.app {
+  width: 100vw;
+  height: 100vh;
+  font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  line-height: 19px;
+  color: #000000;
+  background-color: rgb(44, 122, 224);
+  background-image: url(./app-bg.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }

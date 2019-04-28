@@ -5,7 +5,7 @@ import './BoardActions.css';
 const AddButton = ({ target, setEditable }) => (
   <div className='board__actions'>
     <button type='button' className='btn btn-ghost' onClick={setEditable}>
-      <span className='icon icon-plus' />
+      <span className='icon icon-plus mr-8' />
       Добавить еще одну {target}
     </button>
   </div>

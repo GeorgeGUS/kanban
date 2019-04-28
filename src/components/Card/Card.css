@@ -1,7 +1,9 @@
-/*
- * Task css File
-*/
-
 .card {
-  /* propertys here */
+  margin: 0;
+  padding: 8px;
+  padding-left: 12px;
+  background: #ffffff;
+  box-shadow: 0px 1px 4px rgba(9, 45, 66, 0.25);
+  word-wrap: break-word;
+  border-radius: 3px;
 }

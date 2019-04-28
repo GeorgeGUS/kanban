@@ -1,7 +1,7 @@
-/*
- * BoardTitle css File
-*/
-
-.BoardTitle {
-    /* propertys here */
+.board__title {
+  margin: 0;
+  margin-bottom: 12px;
+  font-size: 13px;
+  line-height: 19px;
+  font-weight: bold;
 }

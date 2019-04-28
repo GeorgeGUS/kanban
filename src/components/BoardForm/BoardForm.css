@@ -1,7 +1,3 @@
-/*
- * BoardForm css File
-*/
-
-.BoardForm {
-    /* propertys here */
+.form__row {
+  margin-bottom: 8px;
 }
