@@ -2,26 +2,21 @@ import React from 'react';
 import BoardForm from '../BoardForm';
 import './BoardActions.css';
 
-const AddButton = ({ inBoard, setEditable }) => (
+const AddButton = ({ target, setEditable }) => (
   <div className='board__actions'>
     <button type='button' className='btn btn-ghost' onClick={setEditable}>
       <span className='icon icon-plus' />
-      Добавить еще одну {inBoard ? 'карточку' : 'колонку'}
+      Добавить еще одну {target}
     </button>
   </div>
 );
 
-const BoardActions = ({ inBoard, boardId }) => {
+const BoardActions = props => {
   const [editable, setEditable] = React.useState(false);
-
   const actions = editable ? (
-    <BoardForm
-      inBoard={inBoard}
-      boardId={boardId}
-      setEditable={() => setEditable(false)}
-    />
+    <BoardForm {...props} setEditable={() => setEditable(false)} />
   ) : (
-    <AddButton inBoard={inBoard} setEditable={() => setEditable(true)} />
+    <AddButton target={props.target} setEditable={() => setEditable(true)} />
   );
 
   return actions;

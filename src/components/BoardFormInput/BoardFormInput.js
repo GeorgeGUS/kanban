@@ -11,15 +11,19 @@ class BoardFormInput extends Component {
   };
 
   render() {
-    const { inBoard, boardId, text } = this.props;
-    const placeholder = `Введите название ${inBoard ? 'карточки' : 'колонки'}`;
-    const InputTag = inBoard ? 'textarea' : 'input';
+    const {
+      inputTag: InputTag,
+      placeholder: phTarget,
+      boardId,
+      text
+    } = this.props;
+    const placeholder = `Введите название ${phTarget}`;
     const value = boardId === text.id ? text.value : '';
     return (
       <div className='form__row'>
         <InputTag
           type='text'
-          className={`form__input`}
+          className={`form__${InputTag}`}
           value={value}
           placeholder={placeholder}
           onChange={({ target: { value } }) => this.updateText(value, boardId)}

@@ -7,29 +7,28 @@ import './BoardForm.css';
 class BoardForm extends Component {
   onUnitAdd = evt => {
     evt.preventDefault();
-    const { text, inBoard, boardId, taskId, addBoard, addTask } = this.props;
-    if (inBoard) {
-      addTask({
-        boardId,
-        id: taskId,
-        text: text.value
-      });
-    } else {
-      addBoard({
-        id: boardId,
-        title: text.value
-      });
+    const { text, type, boardId, taskId, addBoard, addTask } = this.props;
+
+    switch (type) {
+      case 'board':
+        addBoard({ id: boardId, title: text.value });
+        break;
+      case 'card':
+        addTask({ id: taskId, boardId, text: text.value });
+        break;
+      default:
+        console.log('Unknown action type:', type);
     }
   };
 
   render() {
-    const { inBoard, boardId, setEditable } = this.props;
+    const { target, setEditable, ...inputProps } = this.props;
     return (
       <form className='board__form form' onSubmit={this.onUnitAdd}>
-        <BoardFormInput inBoard={inBoard} boardId={boardId} />
+        <BoardFormInput {...inputProps} />
         <div className='board__actions'>
           <button type='submit' className='btn btn-success'>
-            Добавить {inBoard ? 'карточку' : 'колонку'}
+            Добавить {target}
           </button>
           <button type='button' className='btn btn-ghost' onClick={setEditable}>
             <span className='icon icon-cross' />

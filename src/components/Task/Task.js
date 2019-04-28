@@ -3,7 +3,7 @@ import './Task.css';
 
 const Task = ({ id, text }) => {
   return (
-    <p>
+    <p className='task'>
       {id} - {text}
     </p>
   );
