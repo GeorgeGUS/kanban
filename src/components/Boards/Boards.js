@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Board from '../Board';
 import BoardTitle from '../BoardTitle';
 import BoardActions from '../BoardActions';
-import TaskList from '../TaskList';
+import CardList from '../CardList';
 
 import './Boards.css';
 
@@ -14,7 +14,7 @@ const Boards = ({ boards, newBoardId }) => {
         return (
           <Board key={id}>
             <BoardTitle title={title} id={id} />
-            <TaskList boardId={id} />
+            <CardList boardId={id} />
             <BoardActions
               boardId={id}
               type='card'

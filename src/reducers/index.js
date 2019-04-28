@@ -9,9 +9,9 @@ const boardId = handleActions(
   1
 );
 
-const taskId = handleActions(
+const cardId = handleActions(
   {
-    [actions.addTask]: state => state + 1
+    [actions.addCard]: state => state + 1
   },
   1
 );
@@ -20,7 +20,7 @@ const text = handleActions(
   {
     [actions.updateText]: (state, { payload: text }) => text,
     [actions.addBoard]: () => '',
-    [actions.addTask]: () => ''
+    [actions.addCard]: () => ''
   },
   ''
 );
@@ -32,11 +32,11 @@ const boards = handleActions(
   []
 );
 
-const tasks = handleActions(
+const cards = handleActions(
   {
-    [actions.addTask]: (state, { payload: task }) => [...state, task]
+    [actions.addCard]: (state, { payload: card }) => [...state, card]
   },
   []
 );
 
-export default combineReducers({ text, boards, tasks, boardId, taskId });
+export default combineReducers({ text, boards, cards, boardId, cardId });

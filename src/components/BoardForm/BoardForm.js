@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addBoard, addTask } from '../../actions';
+import { addBoard, addCard } from '../../actions';
 import BoardFormInput from '../BoardFormInput';
 import './BoardForm.css';
 
 class BoardForm extends Component {
   onUnitAdd = evt => {
     evt.preventDefault();
-    const { text, type, boardId, taskId, addBoard, addTask } = this.props;
+    const { text, type, boardId, cardId, addBoard, addCard } = this.props;
 
     switch (type) {
       case 'board':
         addBoard({ id: boardId, title: text.value });
         break;
       case 'card':
-        addTask({ id: taskId, boardId, text: text.value });
+        addCard({ id: cardId, boardId, text: text.value });
         break;
       default:
         console.log('Unknown action type:', type);
@@ -40,14 +40,14 @@ class BoardForm extends Component {
   }
 }
 
-const mapStateToProps = ({ text, taskId }) => ({
+const mapStateToProps = ({ text, cardId }) => ({
   text,
-  taskId
+  cardId
 });
 
 const actionCreators = {
   addBoard,
-  addTask
+  addCard
 };
 
 export default connect(

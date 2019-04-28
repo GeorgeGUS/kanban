@@ -34,10 +34,7 @@ class BoardFormInput extends Component {
   }
 }
 
-const mapStateToProps = ({ text, taskId }) => ({
-  text,
-  taskId
-});
+const mapStateToProps = ({ text }) => ({ text });
 
 const actionCreators = {
   updateText
