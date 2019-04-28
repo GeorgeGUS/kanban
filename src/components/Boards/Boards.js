@@ -19,8 +19,8 @@ const Boards = ({ boards, newBoardId }) => {
               boardId={id}
               type='card'
               target='карточку'
-              inputTag='textarea'
-              placeholder='карточки'
+              phTarget='карточки'
+              InputTag='textarea'
             />
           </Board>
         );
@@ -30,8 +30,8 @@ const Boards = ({ boards, newBoardId }) => {
           boardId={newBoardId}
           type='board'
           target='колонку'
-          inputTag='input'
-          placeholder='колонки'
+          phTarget='колонки'
+          InputTag='input'
         />
       </Board>
     </div>

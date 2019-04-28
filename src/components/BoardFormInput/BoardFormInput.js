@@ -5,19 +5,13 @@ import { updateText } from '../../actions';
 import './BoardFormInput.css';
 
 class BoardFormInput extends Component {
-  updateText = (value, boardId) => {
-    const { updateText } = this.props;
+  onTextUpdate = ({ target: { value } }) => {
+    const { updateText, boardId } = this.props;
     updateText({ id: boardId, value: value.trimLeft() });
   };
 
   render() {
-    const {
-      inputTag: InputTag,
-      placeholder: phTarget,
-      boardId,
-      text
-    } = this.props;
-    const placeholder = `Введите название ${phTarget}`;
+    const { InputTag, phTarget, boardId, text } = this.props;
     const value = boardId === text.id ? text.value : '';
     return (
       <div className='form__row'>
@@ -25,8 +19,8 @@ class BoardFormInput extends Component {
           type='text'
           className={`form__${InputTag}`}
           value={value}
-          placeholder={placeholder}
-          onChange={({ target: { value } }) => this.updateText(value, boardId)}
+          placeholder={`Введите название ${phTarget}`}
+          onChange={this.onTextUpdate}
           required
         />
       </div>
