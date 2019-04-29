@@ -31,11 +31,11 @@ class BoardFormInput extends Component {
 
 const mapStateToProps = ({ text }) => ({ text });
 
-const actionCreators = {
+const mapDispatchToProps = {
   updateText
 };
 
 export default connect(
   mapStateToProps,
-  actionCreators
+  mapDispatchToProps
 )(BoardFormInput);

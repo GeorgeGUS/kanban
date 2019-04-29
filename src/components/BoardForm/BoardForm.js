@@ -45,12 +45,12 @@ const mapStateToProps = ({ text, cardId }) => ({
   cardId
 });
 
-const actionCreators = {
+const mapDispatchToProps = {
   addBoard,
   addCard
 };
 
 export default connect(
   mapStateToProps,
-  actionCreators
+  mapDispatchToProps
 )(BoardForm);
