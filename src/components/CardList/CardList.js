@@ -5,6 +5,9 @@ import './CardList.css';
 
 const CardList = ({ boardId, cards }) => {
   const boardCards = cards.filter(card => card.boardId === boardId);
+  if (boardCards.length === 0) {
+    return null;
+  }
   return (
     <ul className='card-list'>
       {boardCards.map(({ id, text }) => (

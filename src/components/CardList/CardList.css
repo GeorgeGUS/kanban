@@ -1,6 +1,6 @@
 .card-list {
-  margin: 4px -4px;
-  padding: 0 4px;
+  margin: 0 -4px 4px;
+  padding: 4px;
   max-height: 100%;
   list-style: none;
   overflow-y: auto;
@@ -15,5 +15,5 @@
 }
 
 .card-list__item:last-child {
-  margin-bottom: 4px;
+  margin-bottom: 0;
 }

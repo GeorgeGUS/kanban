@@ -1,6 +1,4 @@
 .board__actions {
-  display: flex;
-  justify-content: space-between;
   padding-top: 4px;
-  padding-bottom: 12px;
+  padding-bottom: 8px;
 }

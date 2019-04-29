@@ -1,3 +1,8 @@
 .form__row {
   margin-bottom: 8px;
 }
+
+.form__actions {
+  display: flex;
+  justify-content: space-between;
+}

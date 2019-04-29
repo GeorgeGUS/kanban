@@ -3,12 +3,10 @@ import BoardForm from '../BoardForm';
 import './BoardActions.css';
 
 const AddButton = ({ target, setEditable }) => (
-  <div className='board__actions'>
-    <button type='button' className='btn btn-ghost w-100' onClick={setEditable}>
-      <span className='icon icon-plus mr-8' />
-      Добавить еще одну {target}
-    </button>
-  </div>
+  <button type='button' className='btn btn-ghost w-100' onClick={setEditable}>
+    <span className='icon icon-plus mr-8' />
+    Добавить еще одну {target}
+  </button>
 );
 
 const BoardActions = props => {
@@ -19,7 +17,7 @@ const BoardActions = props => {
     <AddButton target={props.target} setEditable={() => setEditable(true)} />
   );
 
-  return actions;
+  return <div className='board__actions'>{actions}</div>;
 };
 
 export default BoardActions;

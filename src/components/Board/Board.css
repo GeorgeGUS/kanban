@@ -1,7 +1,7 @@
 .board {
   display: flex;
   flex-direction: column;
-  padding: 8px 12px 0;
+  padding: 8px 12px 4px;
   max-height: 100%;
   flex-shrink: 0;
   flex-basis: 272px;

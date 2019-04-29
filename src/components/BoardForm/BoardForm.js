@@ -26,7 +26,7 @@ class BoardForm extends Component {
     return (
       <form className='board__form form' onSubmit={this.onUnitAdd}>
         <BoardFormInput {...inputProps} />
-        <div className='board__actions'>
+        <div className='form__actions'>
           <button type='submit' className='btn btn-success'>
             Добавить {target}
           </button>
