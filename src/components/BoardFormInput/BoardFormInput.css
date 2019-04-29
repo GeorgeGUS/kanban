@@ -21,7 +21,7 @@
 .form__input:focus,
 .form__textarea:focus {
   outline: none;
-  box-shadow: 1px solid #b8b9bb;
+  box-shadow: inset 0 0 0 2px #b8b9bb, 0px 1px 4px rgba(9, 45, 66, 0.25);
 }
 
 .form__input::placeholder,

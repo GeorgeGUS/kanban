@@ -22,6 +22,7 @@ class BoardFormInput extends Component {
           placeholder={`Введите название ${phTarget}`}
           onChange={this.onTextUpdate}
           required
+          autoFocus
         />
       </div>
     );

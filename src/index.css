@@ -15,6 +15,10 @@ body {
   overflow: hidden;
 }
 
+.w-100 {
+  width: 100%;
+}
+
 .mr-8 {
   margin-right: 8px;
 }
@@ -32,11 +36,16 @@ body {
 
 .btn:hover,
 .btn:focus {
-  opacity: 0.85;
+  box-shadow: inset 0 0 0 50em #00000015;
 }
 
-.btn:active {
-  opacity: 0.7;
+.btn:focus {
+  outline: none;
+}
+
+.btn:active,
+.btn:focus:active {
+  box-shadow: inset 0 0 0 50em #00000029;
 }
 
 .btn-success {
@@ -45,9 +54,17 @@ body {
   background-color: #39c071;
 }
 
+.btn-success:focus {
+  box-shadow: inset 0 0 0 50em #00000015, 0 0 0 3px #39c0718f;
+}
+
 .btn-ghost {
   color: #6b808c;
   background-color: transparent;
+}
+
+.btn-ghost:focus {
+  box-shadow: inset 0 0 0 50em #00000015, 0 0 0 3px #6b808c6f;
 }
 
 .icon {
