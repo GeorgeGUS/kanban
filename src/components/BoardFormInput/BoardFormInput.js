@@ -12,7 +12,9 @@ class BoardFormInput extends Component {
 
   render() {
     const { InputTag, phTarget, boardId, text } = this.props;
-    const value = boardId === text.id ? text.value : '';
+
+    const value = text[boardId] ? text[boardId].value : '';
+
     return (
       <div className='form__row'>
         <InputTag

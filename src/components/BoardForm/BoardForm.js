@@ -11,10 +11,10 @@ class BoardForm extends Component {
 
     switch (type) {
       case 'board':
-        addBoard({ id: boardId, title: text.value });
+        addBoard({ id: boardId, title: text[boardId].value });
         break;
       case 'card':
-        addCard({ id: cardId, boardId, text: text.value });
+        addCard({ id: cardId, boardId, text: text[boardId].value });
         break;
       default:
         console.log('Unknown action type:', type);

@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { handleActions, combineActions } from 'redux-actions';
+import { handleActions } from 'redux-actions';
 import * as actions from '../actions';
 
 const boardId = handleActions(
@@ -20,10 +20,20 @@ const cardId = handleActions(
 
 const text = handleActions(
   {
-    [actions.updateText]: (state, { payload: text }) => text,
-    [combineActions(actions.addBoard, actions.addCard)]: () => ''
+    [actions.updateText]: (state, { payload: text }) => ({
+      ...state,
+      [text.id]: text
+    }),
+    [actions.addBoard]: (state, { payload: { id } }) => ({
+      ...state,
+      [id]: { ...state[id], value: '' }
+    }),
+    [actions.addCard]: (state, { payload: { boardId } }) => ({
+      ...state,
+      [boardId]: { ...state[boardId], value: '' }
+    })
   },
-  ''
+  {}
 );
 
 const boards = handleActions(
