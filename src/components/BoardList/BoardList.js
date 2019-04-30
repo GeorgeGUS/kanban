@@ -6,11 +6,10 @@ import BoardActions from '../BoardActions';
 
 const BoardList = ({ boards }) => {
   return boards.map(({ id, title }) => (
-    <Board key={id}>
-      <BoardTitle title={title} id={id} />
-      <CardList boardId={id} />
+    <Board key={id} boardId={id}>
+      <BoardTitle title={title} />
+      <CardList />
       <BoardActions
-        boardId={id}
         type='card'
         target='карточку'
         phTarget='карточки'

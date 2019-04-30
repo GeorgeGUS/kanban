@@ -1,10 +1,10 @@
 import React from 'react';
 import './BoardTitle.css';
 
-const BoardTitle = ({ id, title }) => {
+const BoardTitle = ({ boardId, title }) => {
   return (
     <h2 className='board__title'>
-      {id}. {title}
+      {boardId}. {title}
     </h2>
   );
 };

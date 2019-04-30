@@ -3,9 +3,8 @@ import Board from '../Board';
 import BoardActions from '../BoardActions';
 
 const NewBoard = ({ id }) => (
-  <Board>
+  <Board boardId={id}>
     <BoardActions
-      boardId={id}
       type='board'
       target='колонку'
       phTarget='колонки'
