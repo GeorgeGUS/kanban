@@ -8,7 +8,7 @@
   line-height: 19px;
   color: #000000;
   background: #ffffff;
-  box-shadow: 0px 1px 4px rgba(9, 45, 66, 0.25);
+  box-shadow: 0px 1px 4px #092d4240;
   border: 0;
   border-radius: 3px;
   box-sizing: border-box;
@@ -21,7 +21,14 @@
 .form__input:focus,
 .form__textarea:focus {
   outline: none;
-  box-shadow: inset 0 0 0 2px #b8b9bb, 0px 1px 4px rgba(9, 45, 66, 0.25);
+  box-shadow: inset 0 0 0 2px #b8b9bbb0, 0px 1px 4px #092d4240;
+}
+
+.form__input.invalid,
+.form__textarea.invalid,
+.form__input.invalid:focus,
+.form__textarea.invalid:focus {
+  box-shadow: inset 0 0 0 2px #e4233fa6, 0px 1px 4px #092d4240;
 }
 
 .form__input::placeholder,

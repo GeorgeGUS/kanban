@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addBoard, addCard } from '../../actions';
-import BoardFormInput from '../BoardFormInput';
-import './BoardForm.css';
+import { addBoard, addCard, updateText } from '../../../actions';
+import FormInput from '../FormInput';
+import './Form.css';
 
-class BoardForm extends Component {
+class Form extends Component {
+  onTextUpdate = ({ target: { value } }) => {
+    const { updateText, boardId } = this.props;
+    updateText({ id: boardId, value: value.trimLeft() });
+  };
+
   onUnitAdd = evt => {
     evt.preventDefault();
     const { text, type, boardId, cardId, addBoard, addCard } = this.props;
@@ -22,10 +27,17 @@ class BoardForm extends Component {
   };
 
   render() {
-    const { target, setEditable, ...inputProps } = this.props;
+    const { target, text, boardId, setEditable, ...inputProps } = this.props;
+    const inputValue = text[boardId] ? text[boardId].value : '';
     return (
-      <form className='board__form form' onSubmit={this.onUnitAdd}>
-        <BoardFormInput {...inputProps} />
+      <form className='form' onSubmit={this.onUnitAdd}>
+        <div className='form__row'>
+          <FormInput
+            {...inputProps}
+            value={inputValue}
+            onTextUpdate={this.onTextUpdate}
+          />
+        </div>
         <div className='form__actions'>
           <button type='submit' className='btn btn-success'>
             Добавить {target}
@@ -47,10 +59,11 @@ const mapStateToProps = ({ text, cardId }) => ({
 
 const mapDispatchToProps = {
   addBoard,
-  addCard
+  addCard,
+  updateText
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(BoardForm);
+)(Form);

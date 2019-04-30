@@ -2,16 +2,16 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { fetchData } from '../../actions';
-import BoardList from '../BoardList/BoardList';
-import NewBoard from '../NewBoard/NewBoard';
-import KanbanService from '../../services/KanbanService';
+import { fetchData } from '../../../actions';
+import BoardList from '../BoardList';
+import NewBoard from '../NewBoard';
+import KanbanService from '../../../services/KanbanService';
 
 import './Boards.css';
 
 const kanbanService = new KanbanService();
 
-class BoardsContainer extends Component {
+class Boards extends Component {
   componentDidMount() {
     this.props.fetchData();
   }
@@ -44,4 +44,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(BoardsContainer);
+)(Boards);

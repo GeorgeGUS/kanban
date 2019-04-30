@@ -1,7 +1,8 @@
 import React from 'react';
-import BoardForm from '../BoardForm';
+import Form from '../../form/Form';
+import withEscapeAction from '../../../hoc/withEscapeAction';
+
 import './BoardActions.css';
-import withEscapeAction from '../../hoc/withEscapeAction';
 
 const AddButton = ({ target, setEditable }) => (
   <button type='button' className='btn btn-ghost w-100' onClick={setEditable}>
@@ -12,7 +13,7 @@ const AddButton = ({ target, setEditable }) => (
 
 const BoardActions = props => {
   const [editable, setEditable] = React.useState(false);
-  const EscapableForm = withEscapeAction(() => setEditable(false))(BoardForm);
+  const EscapableForm = withEscapeAction(() => setEditable(false))(Form);
 
   const actions = editable ? (
     <EscapableForm {...props} setEditable={() => setEditable(false)} />

@@ -1,7 +1,7 @@
 import React from 'react';
 import Board from '../Board';
 import BoardTitle from '../BoardTitle';
-import CardList from '../CardList';
+import CardList from '../../cards/CardList';
 import BoardActions from '../BoardActions';
 
 const BoardList = ({ boards }) => {

@@ -55,7 +55,7 @@ body {
 }
 
 .btn-success:focus {
-  box-shadow: inset 0 0 0 50em #00000015, 0 0 0 3px #39c0718f;
+  box-shadow: inset 0 0 0 50em #00000015, 0 0 0 2px #39c07180;
 }
 
 .btn-ghost {
@@ -64,7 +64,7 @@ body {
 }
 
 .btn-ghost:focus {
-  box-shadow: inset 0 0 0 50em #00000015, 0 0 0 3px #6b808c6f;
+  box-shadow: inset 0 0 0 50em #00000015, 0 0 0 2px #6b808c4d;
 }
 
 .icon {

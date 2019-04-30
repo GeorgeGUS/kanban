@@ -3,7 +3,7 @@
   padding: 8px;
   padding-left: 12px;
   background: #ffffff;
-  box-shadow: 0px 1px 4px rgba(9, 45, 66, 0.25);
+  box-shadow: 0px 1px 4px #092d4240;
   word-wrap: break-word;
   border-radius: 3px;
 }
