@@ -30,7 +30,7 @@ class Form extends Component {
     const { target, text, boardId, setEditable, ...inputProps } = this.props;
     const inputValue = text[boardId] ? text[boardId].value : '';
     return (
-      <form className='form' onSubmit={this.onUnitAdd}>
+      <form id={boardId} className='form' onSubmit={this.onUnitAdd}>
         <div className='form__row'>
           <FormInput
             {...inputProps}

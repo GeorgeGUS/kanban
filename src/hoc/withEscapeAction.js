@@ -4,7 +4,7 @@ const withEscapeAction = cb => Wrapped => {
   return class extends Component {
     onEscPress = e => {
       if (e.keyCode === 27) {
-        cb();
+        cb(e);
       }
     };
     componentDidMount() {
