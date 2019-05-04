@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { DragDropContext } from 'react-beautiful-dnd';
 
-import { fetchData } from '../../../actions';
+import { fetchData, updateCardPosition } from '../../../actions';
 import BoardList from '../BoardList';
 import NewBoard from '../NewBoard';
 import KanbanService from '../../../services/KanbanService';
@@ -15,16 +15,17 @@ const kanbanService = new KanbanService();
 
 class Boards extends Component {
   onDragEnd = result => {
-    const { destination, source, draggableId } = result;
-    console.log(
-      'on drag end:',
-      'card',
-      draggableId,
-      'moved from',
-      source,
-      'to',
-      destination
-    );
+    const { source, destination, draggableId: id } = result;
+    if (!destination) {
+      return;
+    }
+    const { index: srcIdx, droppableId: srcId } = source;
+    const { index: destIdx, droppableId: destId } = destination;
+    if (srcIdx === destIdx && srcId === destId) {
+      return;
+    }
+    const { updateCardPosition } = this.props;
+    updateCardPosition({ srcIdx, destIdx, srcId, destId, id });
   };
 
   componentDidMount() {
@@ -52,7 +53,8 @@ const mapStateToProps = ({ boards, newBoardId }) => ({
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
-      fetchData: fetchData(kanbanService)
+      fetchData: fetchData(kanbanService),
+      updateCardPosition
     },
     dispatch
   );

@@ -50,7 +50,25 @@ const boards = handleActions(
     [actions.addCard]: (state, { payload: { id, boardId } }) =>
       update(state, {
         byId: { [boardId]: { cardIds: { $push: [id] } } }
-      })
+      }),
+    [actions.updateCardPosition]: (
+      state,
+      { payload: { srcIdx, destIdx, srcId, destId, id } }
+    ) => {
+      if (srcId === destId) {
+        return update(state, {
+          byId: {
+            [srcId]: { cardIds: { $splice: [[srcIdx, 1], [destIdx, 0, id]] } }
+          }
+        });
+      }
+      return update(state, {
+        byId: {
+          [srcId]: { cardIds: { $splice: [[srcIdx, 1]] } },
+          [destId]: { cardIds: { $splice: [[destIdx, 0, id]] } }
+        }
+      });
+    }
   },
   {}
 );
