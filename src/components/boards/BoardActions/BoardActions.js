@@ -15,17 +15,21 @@ const BoardActions = props => {
   const [editable, setEditable] = React.useState(false);
   const { boardId } = props;
 
-  const EscapableForm = withEscapeAction(({ target: { form } }) => {
-    const formId = form ? Number(form.id) : boardId;
-    if (formId === boardId) {
+  const handleEditableState = state => () => setEditable(state);
+
+  const handleEscapeEditableState = ({ target: { form } }) => {
+    const targetId = form ? Number(form.id) : boardId;
+    if (targetId === boardId) {
       setEditable(false);
     }
-  })(Form);
+  };
+
+  const EscapableForm = withEscapeAction(handleEscapeEditableState)(Form);
 
   const actions = editable ? (
-    <EscapableForm {...props} setEditable={() => setEditable(false)} />
+    <EscapableForm {...props} setEditable={handleEditableState(false)} />
   ) : (
-    <AddButton target={props.target} setEditable={() => setEditable(true)} />
+    <AddButton target={props.target} setEditable={handleEditableState(true)} />
   );
 
   return <div className='board__actions'>{actions}</div>;
