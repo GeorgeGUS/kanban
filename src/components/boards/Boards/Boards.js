@@ -1,44 +1,30 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { DragDropContext } from 'react-beautiful-dnd';
 
+import { boardsSelector } from '../../../selectors';
 import { fetchData, updateCardPosition } from '../../../actions';
-import BoardList from '../BoardList';
-import NewBoard from '../NewBoard';
 import KanbanService from '../../../services/KanbanService';
 
+import { withDragDropContext } from '../../../hoc';
+import BoardList from '../BoardList';
+import NewBoard from '../NewBoard';
+
 import './Boards.css';
-import { boardsSelector } from '../../../selectors';
 
 const kanbanService = new KanbanService();
+const BoardListWithDragDrop = withDragDropContext(BoardList);
 
 class Boards extends Component {
-  onDragEnd = result => {
-    const { source, destination, draggableId: id } = result;
-    if (!destination) {
-      return;
-    }
-    const { index: srcIdx, droppableId: srcId } = source;
-    const { index: destIdx, droppableId: destId } = destination;
-    if (srcIdx === destIdx && srcId === destId) {
-      return;
-    }
-    const { updateCardPosition } = this.props;
-    updateCardPosition({ srcIdx, destIdx, srcId, destId, id });
-  };
-
   componentDidMount() {
     this.props.fetchData();
   }
 
   render() {
-    const { boards, newBoardId } = this.props;
+    const { boards, newBoardId, updateCardPosition } = this.props;
     return (
       <div className='boards'>
-        <DragDropContext onDragEnd={this.onDragEnd}>
-          <BoardList boards={boards} />
-        </DragDropContext>
+        <BoardListWithDragDrop boards={boards} onDragEnd={updateCardPosition} />
         <NewBoard id={newBoardId} />
       </div>
     );

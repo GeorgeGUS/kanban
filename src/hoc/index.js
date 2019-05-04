@@ -1,3 +1,4 @@
 import withEscapeAction from './withEscapeAction';
+import withDragDropContext from './withDragDropContext';
 
-export { withEscapeAction };
+export { withEscapeAction, withDragDropContext };

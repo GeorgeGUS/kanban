@@ -1,9 +1,15 @@
 .card-list {
+  display: flex;
+  flex-direction: column;
   margin: 0 -4px 4px;
-  padding: 4px;
+  padding: 0;
   max-height: 100%;
   list-style: none;
   overflow-y: auto;
+}
+
+.card-list:empty {
+  margin-bottom: 0;
 }
 
 .card-list::-webkit-scrollbar {
@@ -11,9 +17,5 @@
 }
 
 .card-list__item {
-  margin-bottom: 8px;
-}
-
-.card-list__item:last-child {
-  margin-bottom: 0;
+  margin: 4px;
 }
