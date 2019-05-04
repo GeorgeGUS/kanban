@@ -12,29 +12,33 @@ class Form extends Component {
 
   onUnitAdd = evt => {
     evt.preventDefault();
-    const { text, type, boardId, cardId, addBoard, addCard } = this.props;
-
+    const { text, type, boardId, newCardId, addBoard, addCard } = this.props;
+    const value = text[boardId];
     switch (type) {
       case 'board':
-        addBoard({ id: boardId, title: text[boardId].value });
+        addBoard({ id: boardId, title: value });
         break;
       case 'card':
-        addCard({ id: cardId, boardId, text: text[boardId].value });
+        addCard({ id: newCardId, boardId, text: value });
         break;
       default:
-        console.log('Unknown action type:', type);
+        console.error('Unknown action type:', type);
     }
   };
 
+  componentWillMount() {
+    const { boardId, updateText } = this.props;
+    updateText({ id: boardId, value: '' });
+  }
+
   render() {
     const { target, text, boardId, setEditable, ...inputProps } = this.props;
-    const inputValue = text[boardId] ? text[boardId].value : '';
     return (
       <form id={boardId} className='form' onSubmit={this.onUnitAdd}>
         <div className='form__row'>
           <FormInput
             {...inputProps}
-            value={inputValue}
+            value={text[boardId] || ''}
             onTextUpdate={this.onTextUpdate}
           />
         </div>
@@ -52,9 +56,9 @@ class Form extends Component {
   }
 }
 
-const mapStateToProps = ({ text, cardId }) => ({
+const mapStateToProps = ({ text, newCardId }) => ({
   text,
-  cardId
+  newCardId
 });
 
 const mapDispatchToProps = {

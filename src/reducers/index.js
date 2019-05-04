@@ -2,17 +2,19 @@ import { combineReducers } from 'redux';
 import { handleActions } from 'redux-actions';
 import * as actions from '../actions';
 
-const boardId = handleActions(
+const newBoardId = handleActions(
   {
-    [actions.dataLoaded]: (state, { payload: { boards } }) => boards.length + 1,
+    [actions.dataLoaded]: (state, { payload: { boards } }) =>
+      boards.allIds.length + 1,
     [actions.addBoard]: state => state + 1
   },
   1
 );
 
-const cardId = handleActions(
+const newCardId = handleActions(
   {
-    [actions.dataLoaded]: (state, { payload: { cards } }) => cards.length + 1,
+    [actions.dataLoaded]: (state, { payload: { cards } }) =>
+      cards.allIds.length + 1,
     [actions.addCard]: state => state + 1
   },
   1
@@ -20,17 +22,17 @@ const cardId = handleActions(
 
 const text = handleActions(
   {
-    [actions.updateText]: (state, { payload: text }) => ({
+    [actions.updateText]: (state, { payload: { id, value } }) => ({
       ...state,
-      [text.id]: text
+      [id]: value
     }),
     [actions.addBoard]: (state, { payload: { id } }) => ({
       ...state,
-      [id]: { ...state[id], value: '' }
+      [id]: ''
     }),
     [actions.addCard]: (state, { payload: { boardId } }) => ({
       ...state,
-      [boardId]: { ...state[boardId], value: '' }
+      [boardId]: ''
     })
   },
   {}
@@ -39,17 +41,45 @@ const text = handleActions(
 const boards = handleActions(
   {
     [actions.dataLoaded]: (state, { payload: { boards } }) => boards,
-    [actions.addBoard]: (state, { payload: board }) => [...state, board]
+    [actions.addBoard]: (state, { payload: { id, title } }) => ({
+      ...state,
+      byId: {
+        ...state.byId,
+        [id]: {
+          id,
+          title,
+          cardIds: []
+        }
+      },
+      allIds: [...state.allIds, id]
+    }),
+    [actions.addCard]: (state, { payload: { id, boardId } }) => ({
+      ...state,
+      byId: {
+        ...state.byId,
+        [boardId]: {
+          ...state.byId[boardId],
+          cardIds: [...state.byId[boardId].cardIds, id]
+        }
+      }
+    })
   },
-  []
+  {}
 );
 
 const cards = handleActions(
   {
     [actions.dataLoaded]: (state, { payload: { cards } }) => cards,
-    [actions.addCard]: (state, { payload: card }) => [...state, card]
+    [actions.addCard]: (state, { payload: card }) => ({
+      ...state,
+      byId: {
+        ...state.byId,
+        [card.id]: card
+      },
+      allIds: [...state.allIds, card.id]
+    })
   },
-  []
+  {}
 );
 
-export default combineReducers({ text, boards, cards, boardId, cardId });
+export default combineReducers({ text, boards, cards, newBoardId, newCardId });

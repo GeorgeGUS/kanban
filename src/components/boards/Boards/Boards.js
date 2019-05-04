@@ -9,13 +9,22 @@ import NewBoard from '../NewBoard';
 import KanbanService from '../../../services/KanbanService';
 
 import './Boards.css';
+import { boardsSelector } from '../../../selectors';
 
 const kanbanService = new KanbanService();
 
 class Boards extends Component {
   onDragEnd = result => {
     const { destination, source, draggableId } = result;
-    console.log('on drag end', destination, source, draggableId);
+    console.log(
+      'on drag end:',
+      'card',
+      draggableId,
+      'moved from',
+      source,
+      'to',
+      destination
+    );
   };
 
   componentDidMount() {
@@ -35,9 +44,9 @@ class Boards extends Component {
   }
 }
 
-const mapStateToProps = ({ boards, boardId }) => ({
-  boards,
-  newBoardId: boardId
+const mapStateToProps = ({ boards, newBoardId }) => ({
+  boards: boardsSelector(boards),
+  newBoardId
 });
 
 const mapDispatchToProps = dispatch => {

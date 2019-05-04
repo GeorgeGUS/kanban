@@ -5,10 +5,10 @@ import CardList from '../../cards/CardList';
 import BoardActions from '../BoardActions';
 
 const BoardList = ({ boards }) => {
-  return boards.map(({ id, title }) => (
+  return boards.map(({ id, title, cardIds }) => (
     <Board key={id} boardId={id}>
       <BoardTitle title={title} />
-      <CardList />
+      <CardList cardIds={cardIds} />
       <BoardActions
         type='card'
         target='карточку'

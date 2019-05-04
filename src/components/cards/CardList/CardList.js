@@ -5,8 +5,8 @@ import Card from '../Card';
 
 import './CardList.css';
 
-const CardList = ({ boardId, cards }) => {
-  const boardCards = cards.filter(card => card.boardId === boardId);
+const CardList = ({ boardId, cards, cardIds }) => {
+  const boardCards = cardIds.map(id => cards[id]);
   // if (boardCards.length === 0) {
   //   return null;
   // }
@@ -30,6 +30,8 @@ const CardList = ({ boardId, cards }) => {
   );
 };
 
-const mapStateToProps = ({ cards }) => ({ cards });
+const mapStateToProps = ({ cards }) => ({
+  cards: cards.byId
+});
 
 export default connect(mapStateToProps)(CardList);
