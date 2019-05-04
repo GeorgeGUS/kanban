@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import { handleActions } from 'redux-actions';
 import * as actions from '../actions';
+import update from 'immutability-helper';
 
 const newBoardId = handleActions(
   {
@@ -41,28 +42,15 @@ const text = handleActions(
 const boards = handleActions(
   {
     [actions.dataLoaded]: (state, { payload: { boards } }) => boards,
-    [actions.addBoard]: (state, { payload: { id, title } }) => ({
-      ...state,
-      byId: {
-        ...state.byId,
-        [id]: {
-          id,
-          title,
-          cardIds: []
-        }
-      },
-      allIds: [...state.allIds, id]
-    }),
-    [actions.addCard]: (state, { payload: { id, boardId } }) => ({
-      ...state,
-      byId: {
-        ...state.byId,
-        [boardId]: {
-          ...state.byId[boardId],
-          cardIds: [...state.byId[boardId].cardIds, id]
-        }
-      }
-    })
+    [actions.addBoard]: (state, { payload: { id, title } }) =>
+      update(state, {
+        byId: { [id]: { $set: { id, title, cardIds: [] } } },
+        allIds: { $push: [id] }
+      }),
+    [actions.addCard]: (state, { payload: { id, boardId } }) =>
+      update(state, {
+        byId: { [boardId]: { cardIds: { $push: [id] } } }
+      })
   },
   {}
 );
@@ -70,14 +58,11 @@ const boards = handleActions(
 const cards = handleActions(
   {
     [actions.dataLoaded]: (state, { payload: { cards } }) => cards,
-    [actions.addCard]: (state, { payload: card }) => ({
-      ...state,
-      byId: {
-        ...state.byId,
-        [card.id]: card
-      },
-      allIds: [...state.allIds, card.id]
-    })
+    [actions.addCard]: (state, { payload: { id, text } }) =>
+      update(state, {
+        byId: { [id]: { $set: { id, text } } },
+        allIds: { $push: [id] }
+      })
   },
   {}
 );
