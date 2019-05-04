@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { DragDropContext } from 'react-beautiful-dnd';
 
 import { fetchData } from '../../../actions';
 import BoardList from '../BoardList';
@@ -12,6 +13,11 @@ import './Boards.css';
 const kanbanService = new KanbanService();
 
 class Boards extends Component {
+  onDragEnd = result => {
+    const { destination, source, draggableId } = result;
+    console.log('on drag end', destination, source, draggableId);
+  };
+
   componentDidMount() {
     this.props.fetchData();
   }
@@ -20,7 +26,9 @@ class Boards extends Component {
     const { boards, newBoardId } = this.props;
     return (
       <div className='boards'>
-        <BoardList boards={boards} />
+        <DragDropContext onDragEnd={this.onDragEnd}>
+          <BoardList boards={boards} />
+        </DragDropContext>
         <NewBoard id={newBoardId} />
       </div>
     );

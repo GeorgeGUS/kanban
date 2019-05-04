@@ -1,11 +1,21 @@
 import React from 'react';
+import { Draggable } from 'react-beautiful-dnd';
 import './Card.css';
 
-const Card = ({ id, text }) => {
+const Card = ({ boardId, id, text, index }) => {
   return (
-    <p className='card'>
-      {id} - {text}
-    </p>
+    <Draggable draggableId={id} index={index}>
+      {provided => (
+        <p
+          className='card'
+          ref={provided.innerRef}
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+        >
+          {boardId}.{id}. {text}
+        </p>
+      )}
+    </Draggable>
   );
 };
 
