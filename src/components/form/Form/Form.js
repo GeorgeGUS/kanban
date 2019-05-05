@@ -7,13 +7,18 @@ import './Form.css';
 class Form extends Component {
   onTextUpdate = ({ target: { value } }) => {
     const { updateText, boardId } = this.props;
-    updateText({ id: boardId, value: value.trimLeft() });
+    if (value.trim() === '') {
+      updateText({ id: boardId, value: '' });
+      return;
+    }
+    updateText({ id: boardId, value });
   };
 
   onUnitAdd = evt => {
     evt.preventDefault();
-    const { text, type, boardId, newCardId, addBoard, addCard } = this.props;
+    const { text, boardId } = this.props;
     const value = text[boardId];
+    const { type, newCardId, addBoard, addCard } = this.props;
     switch (type) {
       case 'board':
         addBoard({ id: boardId, title: value });
@@ -40,6 +45,7 @@ class Form extends Component {
             {...inputProps}
             value={text[boardId] || ''}
             onTextUpdate={this.onTextUpdate}
+            onSubmit={this.onUnitAdd}
           />
         </div>
         <div className='form__actions'>

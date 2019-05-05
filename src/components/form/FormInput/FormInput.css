@@ -16,12 +16,13 @@
 
 .form__textarea {
   resize: none;
+  max-height: 168px;
 }
 
 .form__input:focus,
 .form__textarea:focus {
   outline: none;
-  box-shadow: inset 0 0 0 2px #b8b9bbb0, 0px 1px 4px #092d4240;
+  box-shadow: 0px 1px 4px #092d4280;
 }
 
 .form__input.invalid,
