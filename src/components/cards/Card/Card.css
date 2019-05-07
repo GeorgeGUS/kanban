@@ -7,3 +7,7 @@
   word-wrap: break-word;
   border-radius: 3px;
 }
+
+.card--dragging {
+  transform: rotate(5deg);
+}

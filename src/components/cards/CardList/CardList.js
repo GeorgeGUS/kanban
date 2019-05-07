@@ -6,19 +6,21 @@ import Card from '../Card';
 import './CardList.css';
 
 const CardList = ({ boardId, cards, cardIds }) => {
-  const boardCards = cardIds.map(id => cards[id]);
   return (
     <DroppableList className='card-list' id={boardId}>
-      {boardCards.map(({ id, text }, index) => (
-        <DraggableListItem
-          className='card-list__item'
-          index={index}
-          key={id}
-          id={id}
-        >
-          <Card text={text} />
-        </DraggableListItem>
-      ))}
+      {cardIds.map((cardId, index) => {
+        const { id, text } = cards[cardId];
+        return (
+          <DraggableListItem
+            className='card-list__item'
+            index={index}
+            key={id}
+            id={id}
+          >
+            <Card text={text} />
+          </DraggableListItem>
+        );
+      })}
     </DroppableList>
   );
 };
