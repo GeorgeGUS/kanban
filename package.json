@@ -1,8 +1,10 @@
 {
   "name": "kanban",
+  "homepage": "https://georgegus.github.io/kanban",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "gh-pages": "^2.0.1",
     "immutability-helper": "^3.0.0",
     "react": "^16.8.6",
     "react-beautiful-dnd": "11.0.2",
@@ -18,7 +20,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
