@@ -1,6 +1,7 @@
 .board__title {
   margin: 0;
   margin-bottom: 8px;
+  flex-shrink: 0;
   font-size: 13px;
   line-height: 19px;
   font-weight: bold;
