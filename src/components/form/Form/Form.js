@@ -18,6 +18,9 @@ class Form extends Component {
     evt.preventDefault();
     const { text, boardId } = this.props;
     const value = text[boardId];
+    if (value === '') {
+      return;
+    }
     const { type, newCardId, addBoard, addCard } = this.props;
     switch (type) {
       case 'board':
